@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import MainContext from '../store/MainContext';
-import { Bold, DefaultBody, StatsBody, Title, ProfileImage } from '../styled-components';
+import { Bold, DefaultBody, StatsBody, Title, ProfileImage, Uppercase } from '../styled-components';
 import { Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import BottomBar from '../components/BottomBar';
 
 function Information() {
   const context = useContext(MainContext);
   const { abilities, height, moves, name, sprites } = context.state;
-  console.log(sprites.front_default);
+
   return (
     <DefaultBody>
       <ScrollView>
@@ -20,14 +21,15 @@ function Information() {
           </Text>
           <Bold>Abilities:</Bold>
           {abilities.map(ability => (
-            <Text>{ability.ability.name}</Text>
+            <Uppercase>{ability.ability.name}</Uppercase>
           ))}
           <Bold>{'\n'}Moves:</Bold>
           {moves.map(move => (
-            <Text>{move.move.name}</Text>
+            <Uppercase>{move.move.name}</Uppercase>
           ))}
         </StatsBody>
       </ScrollView>
+      <BottomBar />
     </DefaultBody>
   );
 }
